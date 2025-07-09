@@ -1,7 +1,9 @@
+import Background from './components/Background'
+
 function App() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <Background />
     </div>
   )
 }
