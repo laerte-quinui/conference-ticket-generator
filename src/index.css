@@ -24,6 +24,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@utility bg-glass {
+  @apply bg-[var(--neutral-700)]/25 backdrop-blur-xs hover:bg-[var(--neutral-700)]/30;
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -38,6 +42,10 @@ body {
 
 h1 {
   @apply text-2xl font-bold text-[var(--neutral-0)] sm:text-4xl lg:text-5xl;
+}
+
+label {
+  @apply block font-semibold text-[var(--neutral-0)];
 }
 
 @media (min-width: 640px) {

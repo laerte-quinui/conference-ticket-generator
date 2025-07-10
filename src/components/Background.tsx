@@ -8,7 +8,7 @@ const Background = () => {
   return (
     <div className="absolute top-0 left-0 z-[-1] h-full w-full overflow-hidden">
       {/* Lines */}
-      <img src={LinesPattern} className="max-w-4xl lg:max-w-full" />
+      <img src={LinesPattern} className="max-w-4xl lg:w-full lg:max-w-full" />
 
       {/* Circles */}
       <img

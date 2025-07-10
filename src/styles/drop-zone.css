@@ -1,0 +1,19 @@
+@reference "../index.css";
+
+@layer components {
+  .drop-zone {
+    @apply flex flex-col items-center rounded-lg border border-dashed border-[var(--neutral-700)] bg-glass p-4 text-center transition;
+  }
+
+  .drop-zone.drop-zone__on-drag {
+    @apply border-[var(--orange-500)] bg-[var(--neutral-700)]/35;
+  }
+
+  .drop-zone__icon {
+    @apply mb-4 rounded-xl border border-[var(--neutral-700)] bg-[var(--neutral-700)]/50 p-2;
+  }
+
+  .drop-zone__text {
+    @apply text-sm text-[var(--neutral-300)];
+  }
+}
