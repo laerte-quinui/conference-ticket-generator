@@ -11,10 +11,10 @@ const DropZone = () => {
   const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
     acceptedFiles.forEach((file: FileWithPath) => {
       const reader = new FileReader()
-
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
+        console.log('file dropped:', file)
         const binaryStr = reader.result
         console.log(binaryStr)
       }
@@ -22,18 +22,14 @@ const DropZone = () => {
     })
   }, [])
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: { 'image/jpg': [], 'image/png': [] },
-    maxFiles: 1
-  })
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
     <div
       {...getRootProps()}
       className={`drop-zone ${isDragActive ? 'drop-zone__on-drag' : ''}`}
     >
-      <input {...getInputProps()} />
+      <input type="file" id="drop-zone" {...getInputProps()} />
 
       <div className="drop-zone__icon">
         <img src={UploadIcon} />

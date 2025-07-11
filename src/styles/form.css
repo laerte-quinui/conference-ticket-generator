@@ -1,0 +1,11 @@
+@reference "../index.css";
+
+@layer components {
+  .input {
+    @apply h-fit w-full rounded-lg border border-[var(--neutral-700)] bg-glass px-4 py-2 focus-outline placeholder:text-sm placeholder:text-[var(--neutral-500)];
+  }
+
+  .btn {
+    @apply flex h-10 w-full cursor-pointer items-center justify-center rounded-lg border-b-4 border-b-transparent bg-[var(--orange-500)] font-semibold text-[var(--neutral-900)] focus-outline transition hover:border-b-[var(--orange-500)] hover:bg-[var(--orange-700)];
+  }
+}

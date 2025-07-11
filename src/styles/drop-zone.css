@@ -2,7 +2,7 @@
 
 @layer components {
   .drop-zone {
-    @apply flex flex-col items-center rounded-lg border border-dashed border-[var(--neutral-700)] bg-glass p-4 text-center transition;
+    @apply flex flex-col items-center rounded-lg border border-dashed border-[var(--neutral-700)] bg-glass p-4 text-center focus-outline;
   }
 
   .drop-zone.drop-zone__on-drag {

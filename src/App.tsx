@@ -6,8 +6,8 @@ import Header from './components/Header'
 function App() {
   return (
     <div>
-      <div className="container mx-auto px-4">
-        <img src={Logo} className="mx-auto mt-8 mb-16" />
+      <div className="container mx-auto h-screen px-4">
+        <img src={Logo} className="mx-auto mt-8 mb-8 lg:mb-16" />
         <Header />
         <Form />
       </div>

@@ -28,6 +28,10 @@
   @apply bg-[var(--neutral-700)]/25 backdrop-blur-xs hover:bg-[var(--neutral-700)]/30;
 }
 
+@utility focus-outline {
+  @apply focus:outline focus:outline-offset-4 focus:outline-[var(--neutral-0)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--neutral-0)];
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -35,6 +39,7 @@ body {
   padding: 0;
 
   background-image: url('/src/assets/images/background-mobile.png');
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
