@@ -1,16 +1,41 @@
+import { Controller, useForm } from 'react-hook-form'
 import InfoIcon from '../assets/images/icon-info.svg'
 import '../styles/form.css'
 import DropZone from './ui/DropZone'
 
+type FormType = {
+  avatar: File
+  userName: string
+  email: string
+  github: string
+}
+
 const Form = () => {
+  const { handleSubmit, register, control } = useForm<FormType>()
+
+  const onSubmit = (data: FormType) => {
+    console.log(data)
+    // Handle form submission logic here
+  }
+
   return (
-    <form className="mx-auto mt-8 mb-10 flex flex-col gap-4 lg:mt-10 lg:max-w-3/12">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="mx-auto mt-8 mb-10 flex flex-col gap-4 lg:mt-10 lg:max-w-3/12"
+    >
       {/* Upload avatar */}
       <div>
         <label className="mb-2" htmlFor="drop-zone">
           Upload Avatar
         </label>
-        <DropZone />
+        <Controller
+          name="avatar"
+          control={control}
+          render={({ field: { onChange } }) => (
+            <DropZone onFileChange={onChange} />
+          )}
+        />
+
         <span className="mt-2 flex items-center gap-2 text-xs text-[var(--neutral-500)]">
           <img src={InfoIcon} alt="Info Icon" className="h-4 w-4" />
           Upload your photo (JPG or PNG, max size: 500KB)
@@ -26,6 +51,7 @@ const Form = () => {
           id="userName"
           type="text"
           placeholder="Jhon Doe"
+          {...register('userName', { required: true })}
           className="input"
         />
       </div>
@@ -39,6 +65,7 @@ const Form = () => {
           id="email"
           type="email"
           placeholder="example@email.com"
+          {...register('email', { required: true })}
           className="input"
         />
       </div>
@@ -52,11 +79,14 @@ const Form = () => {
           id="github"
           type="text"
           placeholder="@yourusername"
+          {...register('github', { required: true })}
           className="input"
         />
       </div>
 
-      <button className="btn">Generate My Ticket</button>
+      <button className="btn" type="submit">
+        Generate My Ticket
+      </button>
     </form>
   )
 }

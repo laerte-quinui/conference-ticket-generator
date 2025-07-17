@@ -3,24 +3,41 @@ import { useDropzone } from 'react-dropzone'
 import UploadIcon from '../../assets/images/icon-upload.svg'
 import '../../styles/drop-zone.css'
 
-const DropZone = () => {
+const DropZone = ({
+  onFileChange
+}: {
+  onFileChange: (event: File[]) => void
+}) => {
   const [avatarUrl, setAvatarUrl] = useState<string | null>()
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    acceptedFiles.forEach((file: File) => {
-      const reader = new FileReader()
-      reader.onabort = () => console.log('file reading was aborted')
-      reader.onerror = () => console.log('file reading has failed')
-      reader.onload = () => {
-        const binaryStr = reader.result
-        if (typeof binaryStr === 'string' || binaryStr === null)
-          setAvatarUrl(binaryStr)
-      }
-      reader.readAsDataURL(file)
-    })
-  }, [])
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      acceptedFiles.forEach((file: File) => {
+        const reader = new FileReader()
+        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => console.log('file reading has failed')
+        reader.onload = () => {
+          const binaryStr = reader.result
+          if (typeof binaryStr === 'string' || binaryStr === null)
+            setAvatarUrl(binaryStr)
+        }
+        reader.readAsDataURL(file)
+      })
+      onFileChange(acceptedFiles)
+    },
+    [onFileChange]
+  )
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple: false,
+    maxSize: 500 * 1024, // 500KB
+    maxFiles: 1,
+    accept: {
+      'image/jpeg': ['.jpeg', '.jpg'],
+      'image/png': ['.png']
+    }
+  })
 
   if (avatarUrl) {
     return (
@@ -28,6 +45,7 @@ const DropZone = () => {
         <div className="drop-zone__icon with-avatar">
           <img src={avatarUrl} />
         </div>
+
         <div className="flex items-center gap-2">
           <button
             type="button"
