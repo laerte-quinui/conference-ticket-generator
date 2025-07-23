@@ -1,4 +1,5 @@
 import { Controller, useForm } from 'react-hook-form'
+import { useSubmit } from 'react-router'
 import InfoIcon from '../assets/images/icon-info.svg'
 import '../styles/form.css'
 import DropZone from './ui/DropZone'
@@ -12,10 +13,17 @@ type FormType = {
 
 const Form = () => {
   const { handleSubmit, register, control } = useForm<FormType>()
+  const submit = useSubmit()
 
   const onSubmit = (data: FormType) => {
-    console.log(data)
-    // Handle form submission logic here
+    console.log(data.avatar)
+    const id = String(Math.floor(Math.random() * 100000)).padStart(5, '0')
+    const formData = new FormData()
+    Object.entries({ ...data, id }).forEach(([key, value]) => {
+      formData.append(key, value)
+    })
+
+    submit(formData, { method: 'post', action: '/ticket/' + id })
   }
 
   return (
