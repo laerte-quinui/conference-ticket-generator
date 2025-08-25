@@ -25,13 +25,16 @@ const Form = () => {
     const id = String(Math.floor(Math.random() * 100000)).padStart(5, '0')
     const formData = new FormData()
 
+    let avatarUrl = ''
+    if (data.avatar && data.avatar[0])
+      avatarUrl = URL.createObjectURL(data.avatar[0])
+
     Object.entries({ ...data, id }).forEach(([key, value]) => {
-      if (key === 'avatar' && Array.isArray(value))
-        value.forEach(file => formData.append('avatar', file))
+      if (key === 'avatar') formData.append('avatar', avatarUrl)
       else formData.append(key, String(value))
     })
 
-    submit(formData, { method: 'post', action: '/ticket/' + id })
+    submit(formData, { method: 'post', action: '/' + id })
   }
 
   return (

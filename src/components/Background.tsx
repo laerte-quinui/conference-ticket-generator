@@ -6,7 +6,7 @@ import SquigglyTop from '../assets/images/pattern-squiggly-line-top.svg'
 
 const Background = () => {
   return (
-    <div className="fixed top-0 left-0 z-[-1] h-screen w-full overflow-hidden">
+    <div className="fixed top-0 left-0 -z-2 h-screen w-full overflow-hidden">
       {/* Lines */}
       <img src={LinesPattern} className="max-w-4xl lg:w-full lg:max-w-full" />
 
