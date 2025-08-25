@@ -1,4 +1,6 @@
 import { type PropsWithChildren } from 'react'
+import SplitText from './ui/SplitText'
+import TextType from './ui/TextType'
 
 const Header = ({
   userData
@@ -9,12 +11,18 @@ const Header = ({
     return (
       <HeaderContainer>
         <h1>
-          Congrtats,{' '}
-          <span className="bg-[var(--orange-gradient)] bg-gradient-to-r from-[var(--orange-500)] to-[var(--neutral-0)] bg-clip-text text-transparent">
-            {userData.name}
+          <SplitText text="Congrats" />
+          <span>
+            {' '}
+            <SplitText
+              className="bg-gradient-to-r from-[var(--orange-500)] to-[var(--neutral-0)] bg-clip-text text-transparent"
+              text={userData.name}
+            />
+            !{' '}
           </span>
-          ! Your ticket is ready.
+          <SplitText text="Your ticket is ready." />
         </h1>
+
         <p className="text-[var(--neutral-300)]">
           We've emailed your ticket to{' '}
           <span className="text-[var(--orange-500)]">{userData.email}</span> and
@@ -26,7 +34,16 @@ const Header = ({
 
   return (
     <HeaderContainer>
-      <h1>Your Journey to Coding Conf 2025 Starts Here!</h1>
+      <h1>
+        <TextType
+          text={'Your Journey to Coding Conf 2025 Starts Here!'}
+          typingSpeed={55}
+          pauseDuration={1500}
+          showCursor={true}
+          cursorCharacter="_"
+        />
+      </h1>
+
       <p className="text-[var(--neutral-300)]">
         Secure your spot at next year's biggest coding conference.
       </p>
