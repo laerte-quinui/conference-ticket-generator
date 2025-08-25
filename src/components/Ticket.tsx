@@ -1,6 +1,7 @@
 import GithubIcon from '../assets/images/icon-github.svg'
 import LogoMark from '../assets/images/logo-mark.svg'
 import TicketBg from '../assets/images/pattern-ticket.svg'
+import TiltedCard from './ui/TiltedCard'
 
 interface Props {
   id: string
@@ -9,9 +10,54 @@ interface Props {
   github: string
 }
 
-const TicketPage = ({ id, avatar, userName, github }: Props) => {
+const Ticket = ({ id, avatar, userName, github }: Props) => {
   return (
-    <div className="relative mx-auto mt-32 flex min-h-[160px] w-full flex-col p-2 sm:min-h-[280px] sm:max-w-[600px] md:p-4">
+    <>
+      {/* For desktop devices */}
+      <div className="mx-auto mt-20 !hidden h-full max-h-[480px] w-full max-w-[800px] md:!block">
+        <TiltedCard
+          imageSrc={TicketBg}
+          showTooltip={false}
+          containerHeight="100%"
+          imageWidth="600px"
+          imageHeight="280px"
+          rotateAmplitude={10}
+          scaleOnHover={1}
+          displayOverlayContent
+          overlayContent={
+            <div className="relative flex min-h-[160px] w-full flex-col p-2 sm:min-h-[280px] sm:max-w-[600px] md:p-4">
+              <TicketContent
+                id={id}
+                avatar={avatar}
+                userName={userName}
+                github={github}
+              />
+            </div>
+          }
+        />
+      </div>
+
+      {/* For Mobile Devices */}
+      <div className="relative mx-auto mt-32 flex min-h-[160px] w-[344px] flex-col p-2 sm:min-h-[280px] sm:w-[600px] md:hidden md:p-4">
+        <TicketContent
+          id={id}
+          avatar={avatar}
+          userName={userName}
+          github={github}
+        />
+        <img
+          src={TicketBg}
+          alt="Ticket Background"
+          className="absolute top-0 left-0 -z-1"
+        />
+      </div>
+    </>
+  )
+}
+
+const TicketContent = ({ id, avatar, userName, github }: Props) => {
+  return (
+    <>
       {/* Ticket Header */}
       <div className="flex items-start gap-2 md:gap-4 lg:items-center">
         <img
@@ -28,7 +74,6 @@ const TicketPage = ({ id, avatar, userName, github }: Props) => {
           </p>
         </div>
       </div>
-
       {/* User details */}
       <div className="mt-auto flex items-center gap-2 lg:gap-4">
         <div className="size-12 overflow-hidden rounded-md sm:size-14 lg:size-18 lg:rounded-xl">
@@ -48,19 +93,12 @@ const TicketPage = ({ id, avatar, userName, github }: Props) => {
           </span>
         </div>
       </div>
-
       {/* Id */}
       <span className="absolute top-1/2 right-0 -translate-y-1/2 rotate-90 text-xl font-bold text-[var(--neutral-500)] lg:right-2">
         #{id}
       </span>
-
-      <img
-        src={TicketBg}
-        alt="Ticket Background"
-        className="absolute top-0 left-0 -z-1"
-      />
-    </div>
+    </>
   )
 }
 
-export default TicketPage
+export default Ticket
