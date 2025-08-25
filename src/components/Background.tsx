@@ -3,6 +3,7 @@ import LinesPattern from '../assets/images/pattern-lines.svg'
 import SquigglyBottomDesktop from '../assets/images/pattern-squiggly-line-bottom-desktop.svg'
 import SquigglyBottomMobile from '../assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg'
 import SquigglyTop from '../assets/images/pattern-squiggly-line-top.svg'
+import DotGrid from './ui/DotGrid'
 
 const Background = () => {
   return (
@@ -33,6 +34,20 @@ const Background = () => {
         src={SquigglyBottomDesktop}
         className="absolute bottom-0 left-0 hidden lg:block"
       />
+
+      {/* animated Dot Grid */}
+      <div className="absolute top-0 left-0 -z-3 h-full w-full">
+        <DotGrid
+          dotSize={2}
+          gap={16}
+          baseColor="hsla(245.2941176470588, 19.101123595505623%, 34.90196078431372%, 0.45)"
+          proximity={120}
+          shockRadius={200}
+          shockStrength={4}
+          resistance={750}
+          returnDuration={1.5}
+        />
+      </div>
     </div>
   )
 }
