@@ -16,7 +16,9 @@ function App() {
     <div>
       <div className="container mx-auto h-screen px-4">
         <img src={Logo} className="mx-auto mt-8 mb-8 lg:mb-16" />
-        <Header />
+        <Header
+          userData={{ name: getData('userName'), email: getData('email') }}
+        />
         {!actionData && <Form />}
         {actionData && (
           <Ticket
