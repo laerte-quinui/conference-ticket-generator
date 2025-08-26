@@ -53,13 +53,14 @@ const Form = () => {
           rules={{
             required: 'Please, upload your avatar.',
             validate: {
-              acceptedFormats: file =>
-                file[0]?.type === 'image/jpeg' ||
-                file[0]?.type === 'image/png' ||
-                'Only JPG or PNG files are allowed.',
-              maxSize: file =>
-                file[0]?.size <= 500000 ||
-                'File too large. Please upload a photo that is less than 500KB.'
+              isImage: files => {
+                if (!files || files.length === 0) return true
+                const file = files[0]
+                if (file.size > 500 * 1024) {
+                  return 'File too large. Please upload a photo under 500KB.'
+                }
+                return true
+              }
             }
           }}
           render={({ field: { onChange } }) => (
