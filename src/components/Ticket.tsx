@@ -14,7 +14,7 @@ const Ticket = ({ id, avatar, userName, github }: Props) => {
   return (
     <>
       {/* For desktop devices */}
-      <div className="mx-auto mt-20 !hidden h-full max-h-[480px] w-full max-w-[800px] md:!block">
+      <div className="mx-auto mt-12 !hidden h-full max-h-[480px] w-full max-w-[800px] md:!block">
         <TiltedCard
           imageSrc={TicketBg}
           showTooltip={false}
