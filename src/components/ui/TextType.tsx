@@ -1,9 +1,9 @@
 'use client'
 
 import { gsap } from 'gsap'
+import type { ElementType } from 'react'
 import {
   createElement,
-  ElementType,
   useCallback,
   useEffect,
   useMemo,
@@ -111,7 +111,7 @@ const TextType = ({
   useEffect(() => {
     if (!isVisible) return
 
-    let timeout: NodeJS.Timeout
+    let timeout: number
 
     const currentText = textArray[currentTextIndex]
     const processedText = reverseMode
