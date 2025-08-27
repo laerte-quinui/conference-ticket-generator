@@ -40,7 +40,7 @@ const Form = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto mt-8 mb-10 flex flex-col gap-4 lg:mt-10 lg:max-w-3/12"
+      className="mx-auto mt-8 flex flex-col gap-4 pb-18 lg:mt-10 lg:max-w-3/12"
     >
       {/* Upload avatar */}
       <div>
