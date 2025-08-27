@@ -37,7 +37,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   textAlign = 'center',
   onLetterAnimationComplete
 }) => {
-  const ref = useRef<HTMLParagraphElement>(null)
+  const ref = useRef<HTMLSpanElement>(null)
   const animationCompletedRef = useRef(false)
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
 
@@ -45,9 +45,7 @@ const SplitText: React.FC<SplitTextProps> = ({
     if (typeof window === 'undefined' || !ref.current || !text) return
 
     const el = ref.current
-
     animationCompletedRef.current = false
-
     const absoluteLines = splitType === 'lines'
     if (absoluteLines) el.style.position = 'relative'
 
@@ -76,6 +74,13 @@ const SplitText: React.FC<SplitTextProps> = ({
         break
       default:
         targets = splitter.chars
+    }
+
+    // Apply the className prop to all split elements
+    if (className && targets) {
+      targets.forEach(t => {
+        t.classList.add(...className.split(' ').filter(Boolean))
+      })
     }
 
     if (!targets || targets.length === 0) {
@@ -154,7 +159,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   ])
 
   return (
-    <p
+    <span
       ref={ref}
       className={`split-parent inline-block overflow-hidden whitespace-normal ${className}`}
       style={{
@@ -163,7 +168,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       }}
     >
       {text}
-    </p>
+    </span>
   )
 }
 

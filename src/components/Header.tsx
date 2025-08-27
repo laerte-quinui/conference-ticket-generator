@@ -11,11 +11,12 @@ const Header = ({
     return (
       <HeaderContainer>
         <h1>
-          <SplitText text="Congrats" />
+          <SplitText text="Congrats" splitType="words" />
           <span>
             {' '}
             <SplitText
               className="bg-gradient-to-r from-[var(--orange-500)] to-[var(--neutral-0)] bg-clip-text text-transparent"
+              splitType="words"
               text={userData.name}
             />
             !{' '}
